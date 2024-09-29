@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1005593904938",
+    "firebase_url": "https://jattprabjot-eaf3d-default-rtdb.firebaseio.com",
+    "project_id": "jattprabjot-eaf3d",
+    "storage_bucket": "jattprabjot-eaf3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005593904938:android:d9e4fb74b8931274fa4053",
+        "android_client_info": {
+          "package_name": "com.example.jattprabjot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlmwUIhRjJ6BlCQxj0xLkQSce3u3BCyFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005593904938:android:89e40d8fe98fe183fa4053",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlmwUIhRjJ6BlCQxj0xLkQSce3u3BCyFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
