@@ -1,0 +1,63 @@
+package com.example.myapplication
+
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.example.myapplication.R
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var messageTextView: TextView
+    private lateinit var storageRef: DatabaseReference
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+        val myImageView: ImageView = findViewById(R.id.myImageView)
+        messageTextView = findViewById(R.id.messageTextView)
+
+
+        val imageStorageRef = Firebase.storage.reference.child("promo banner.jpg")
+
+
+        imageStorageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this)
+                .load(uri)
+                .into(myImageView)
+        }.addOnFailureListener {
+            Log.e("Firebase", "Failed to download image", it)
+        }
+
+
+        storageRef = FirebaseDatabase.getInstance().getReference("messages")
+
+
+        fetchMessage()
+    }
+
+    private fun fetchMessage() {
+        storageRef = FirebaseDatabase.getInstance().getReference("Messages")
+
+        storageRef.child("promoMessage").get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                val message = snapshot.getValue(String::class.java)
+                messageTextView.text = message ?: getString(R.string.no_message_available)
+            } else {
+                messageTextView.text = getString(R.string.no_message_available)
+            }
+        }.addOnFailureListener { exception ->
+            Log.e("Firebase", "Failed to fetch message", exception)
+            messageTextView.text = getString(R.string.error_fetching_message)
+        }
+    }
+
+}
